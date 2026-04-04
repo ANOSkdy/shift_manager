@@ -1,0 +1,270 @@
+:root {
+  --bg: #f9f9f9;
+  --primary: #4a90e2;
+  --success: #50e3c2;
+  --warning: #ffd166;
+  --danger: #f25f5c;
+  --insight: #9d59ec;
+  --card: #ffffff;
+  --text: #1f2a37;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+
+.sidebar {
+  background: #fff;
+  border-right: 1px solid #eef2f7;
+  padding: 20px;
+}
+
+.sidebar h1 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 8px;
+}
+
+.navItem {
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: background-color 0.2s ease;
+}
+
+.navItem:hover {
+  background: #edf4ff;
+}
+
+.mainArea {
+  padding: 20px 24px;
+}
+
+.topHeader {
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(26, 43, 63, 0.08);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topHeader span {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+}
+
+.pageStack {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.sectionCard {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(26, 43, 63, 0.08);
+  padding: 18px;
+}
+
+.sectionCardHeader h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.sectionCardHeader p {
+  margin: 4px 0 0;
+  color: #526170;
+}
+
+.kpiGrid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.kpiCard {
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.kpiValue {
+  margin: 10px 0 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.statusTag {
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.ctaRow {
+  margin-top: 14px;
+}
+
+.primaryButton {
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.primaryButton:hover {
+  opacity: 0.86;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #ecf0f5;
+  text-align: left;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.filterRow {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+}
+
+.filterButton {
+  border: 1px solid #d7e4f3;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.filterButton.active {
+  background: #edf4ff;
+  border-color: var(--primary);
+}
+
+.alertPanel {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.alertItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #fafcff;
+  border: 1px solid #e4edf7;
+  padding: 8px 10px;
+}
+
+.adjustGrid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.adjustCard {
+  border: 1px solid #e6edf6;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.adjustHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.adjustHeader h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.chipButton {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #edf4ff;
+  cursor: pointer;
+}
+
+.chipButton:disabled {
+  background: #f0f2f5;
+  color: #8b95a1;
+  cursor: default;
+}
+
+.checkList,
+.checkListPlain {
+  margin: 12px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.checkList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.finalRow {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
