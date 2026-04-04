@@ -102,6 +102,32 @@ h2 {
   padding: 1rem 1.25rem;
   box-shadow: 0 8px 20px rgba(36, 50, 63, 0.06);
   border: 1px solid rgba(74, 144, 226, 0.12);
+  position: relative;
+  z-index: 3;
+}
+
+.top-header__title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.menu-button {
+  display: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 0.55rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  background: rgba(36, 50, 63, 0.3);
+  z-index: 1;
 }
 
 .page-stack {
@@ -188,6 +214,11 @@ h2 {
 
 .primary-button:hover {
   opacity: 0.92;
+}
+
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .status-tag {
@@ -286,6 +317,7 @@ select {
 .checklist {
   display: grid;
   gap: 0.6rem;
+  margin-top: 0.75rem;
 }
 
 .checklist li {
@@ -299,6 +331,18 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem 1rem;
+}
+
+.helper-text {
+  color: #5e7386;
+  font-size: 0.86rem;
+  margin-bottom: 0.6rem;
+}
+
+.empty-cell {
+  text-align: center;
+  color: #5e7386;
+  padding: 1rem;
 }
 
 .hero-panel {
@@ -514,8 +558,34 @@ select {
   }
 
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(78vw, 20rem);
+    height: 100vh;
+    z-index: 4;
+    transform: translateX(-102%);
+    transition: transform 0.22s ease;
     border-right: 0;
-    border-bottom: 1px solid var(--border);
+    box-shadow: 0 16px 34px rgba(36, 50, 63, 0.2);
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .top-header {
+    align-items: flex-start;
+  }
+
+  .top-header .primary-button {
+    margin-top: 0.15rem;
   }
 
   .hero-panel {
