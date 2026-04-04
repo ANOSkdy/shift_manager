@@ -13,7 +13,9 @@ export default function PreFinalPage() {
         </div>
         <ul className="bullet-list">
           {warnings.map((warning) => (
-            <li key={warning.id}>{warning.message}</li>
+            <li key={warning.id}>
+              <StatusTag tone={warning.tone}>{warning.message}</StatusTag>
+            </li>
           ))}
         </ul>
       </AlertPanel>
