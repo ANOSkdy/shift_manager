@@ -190,6 +190,11 @@ h2 {
   opacity: 0.92;
 }
 
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .status-tag {
   display: inline-flex;
   padding: 0.24rem 0.56rem;
@@ -286,6 +291,7 @@ select {
 .checklist {
   display: grid;
   gap: 0.6rem;
+  margin-top: 0.75rem;
 }
 
 .checklist li {
@@ -299,6 +305,18 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem 1rem;
+}
+
+.helper-text {
+  color: #5e7386;
+  font-size: 0.86rem;
+  margin-bottom: 0.6rem;
+}
+
+.empty-cell {
+  text-align: center;
+  color: #5e7386;
+  padding: 1rem;
 }
 
 .hero-panel {

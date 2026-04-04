@@ -12,7 +12,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="app-shell">
       <aside className="sidebar">
         <div>
-          <p className="sidebar__eyebrow">Shift Mock PR1</p>
+          <p className="sidebar__eyebrow">Shift Mock PR3</p>
           <h1>シフト作成モック</h1>
         </div>
         <nav aria-label="シフト作成フロー">

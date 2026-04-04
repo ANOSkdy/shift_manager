@@ -7,6 +7,8 @@ import { replacementCandidates, scheduleSlots } from '@/lib/mock/shift-data';
 
 export default function AdjustmentPage() {
   const [selected, setSelected] = useState<Record<string, string>>({});
+  const selectedCount = Object.values(selected).filter(Boolean).length;
+  const shortageCount = scheduleSlots.filter((slot) => slot.assigned.length < slot.required).length;
 
   return (
     <div className="page-stack">
@@ -18,10 +20,16 @@ export default function AdjustmentPage() {
           </Link>
         }
       >
+        <p className="helper-text">不足枠に対して候補を選択すると、調整対象の見落としを減らせます。</p>
+        <div className="status-row">
+          <StatusTag tone="danger">不足枠 {shortageCount}</StatusTag>
+          <StatusTag tone="insight">候補選択済み {selectedCount}</StatusTag>
+        </div>
         <div className="adjust-grid">
           {scheduleSlots.map((slot) => {
             const lack = slot.assigned.length < slot.required;
             const options = replacementCandidates[slot.id] ?? [];
+            const selectedName = selected[slot.id];
             return (
               <article key={slot.id} className="adjust-card">
                 <h3>
@@ -29,6 +37,7 @@ export default function AdjustmentPage() {
                 </h3>
                 <p>現在: {slot.assigned.join(' / ')}</p>
                 {lack ? <StatusTag tone="danger">不足あり</StatusTag> : <StatusTag tone="success">充足</StatusTag>}
+                {selectedName ? <StatusTag tone="primary">候補: {selectedName}</StatusTag> : null}
                 {options.length > 0 ? (
                   <label>
                     代替候補
