@@ -82,7 +82,7 @@ export default function UploadPage() {
         <AlertPanel title="解析が完了しました">
           <p>CSVをもとにベースシフト案を作成しました。内容確認へ進んでください。</p>
           <div>
-            <Link href="/csv-shift-create" className="primary-button">
+            <Link href="/autoview" className="primary-button">
               シフト確認
             </Link>
           </div>
