@@ -593,3 +593,38 @@ select {
     align-items: flex-start;
   }
 }
+
+.upload-flow {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.file-picker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: #41596c;
+}
+
+.file-picker input {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.55rem;
+  max-width: 360px;
+  background: #fff;
+}
+
+.summary-item {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: #fff;
+  min-width: 140px;
+}
+
+.summary-item__value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
