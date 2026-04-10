@@ -44,8 +44,8 @@ export default function AdjustmentPage() {
       <SectionCard
         title="シフト調整（autoview 仮割当エディタ）"
         action={
-          <Link href="/pre-final" className="primary-button">
-            確定前チェックへ
+          <Link href="/autoview" className="primary-button">
+            autoviewへ戻る
           </Link>
         }
       >
