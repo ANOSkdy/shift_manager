@@ -46,17 +46,7 @@ h2 {
 
 .app-shell {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 17rem 1fr;
-}
-
-.sidebar {
-  padding: 1.5rem 1rem;
-  border-right: 1px solid var(--border);
-  background: #fff;
-  display: grid;
-  gap: 1.25rem;
-  align-content: start;
+  display: block;
 }
 
 .sidebar__eyebrow {
@@ -64,30 +54,9 @@ h2 {
   font-size: 0.8rem;
 }
 
-.sidebar__nav {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.sidebar__nav a {
-  display: block;
-  border-radius: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.sidebar__nav a:hover {
-  background: #edf5ff;
-  transform: translateX(2px);
-}
-
-.sidebar__nav a.active {
-  background: var(--primary);
-  color: #fff;
-}
-
 .content-area {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 1rem;
   display: grid;
   gap: 1rem;
@@ -108,26 +77,15 @@ h2 {
 
 .top-header__title {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.7rem;
 }
 
-.menu-button {
-  display: none;
-  border: 1px solid var(--border);
-  background: #fff;
-  border-radius: 0.55rem;
-  padding: 0.35rem 0.55rem;
-  font-size: 1.05rem;
-  line-height: 1;
-}
-
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  border: 0;
-  background: rgba(36, 50, 63, 0.3);
-  z-index: 1;
+.top-header__nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .page-stack {
@@ -553,39 +511,13 @@ select {
 }
 
 @media (max-width: 860px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: min(78vw, 20rem);
-    height: 100vh;
-    z-index: 4;
-    transform: translateX(-102%);
-    transition: transform 0.22s ease;
-    border-right: 0;
-    box-shadow: 0 16px 34px rgba(36, 50, 63, 0.2);
-  }
-
-  .sidebar--open {
-    transform: translateX(0);
-  }
-
-  .menu-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .top-header {
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .top-header .primary-button {
-    margin-top: 0.15rem;
+  .top-header__nav .chip {
+    text-align: center;
   }
 
   .hero-panel {

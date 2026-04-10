@@ -76,8 +76,8 @@ export default function AutoViewPage() {
           <Link href="/adjustment" className="primary-button">
             仮割当を調整する
           </Link>
-          <Link href="/pre-final" className="chip">
-            確定前チェックへ
+          <Link href="/upload" className="chip">
+            CSV再アップロード
           </Link>
         </div>
       </SectionCard>

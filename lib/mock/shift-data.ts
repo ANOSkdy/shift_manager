@@ -72,15 +72,9 @@ export type SiteBalance = {
 export const targetWeek = '2026/04/13 - 2026/04/19';
 
 export const navItems: NavItem[] = [
-  { href: '/dashboard', label: 'ダッシュボード' },
-  { href: '/upload', label: 'CSVアップロード' },
+  { href: '/upload', label: 'アップロード' },
   { href: '/autoview', label: '自動調整ビュー' },
-  { href: '/availability', label: '希望一覧' },
-  { href: '/master', label: 'スタッフ / 現場マスタ' },
-  { href: '/auto-schedule', label: '自動作成結果' },
-  { href: '/adjustment', label: '調整' },
-  { href: '/pre-final', label: '確定前チェック' },
-  { href: '/finalized', label: '確定・配布' }
+  { href: '/adjustment', label: '調整' }
 ];
 
 export const dashboardKpis: KpiItem[] = [
