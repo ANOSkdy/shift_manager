@@ -6,7 +6,7 @@ export default function FixShiftPage() {
     <div className="page-stack">
       <HeroPanel
         title="配信完了"
-        description="調整済みのシフトを各メンバー向けに配信した想定の完了画面です。"
+        description="調整済みのシフトを各メンバーへ配信しました。"
       />
 
       <SectionCard title="完了ステータス" action={<StatusTag tone="success">配信済み</StatusTag>}>

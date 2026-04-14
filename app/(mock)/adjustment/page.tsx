@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { SectionCard, StatusTag } from '@/components/mock/ui';
 import { autoShiftRows, provisionalReplacementCandidates, provisionalSiteCandidates, type AllocationStatus } from '@/lib/mock/autoview-data';
@@ -12,12 +13,12 @@ type ProvisionalEdit = {
 
 const statusToneMap: Record<AllocationStatus, 'success' | 'primary' | 'warning'> = {
   希望: 'success',
-  仮割当: 'primary',
+  調整中: 'primary',
   要調整: 'warning'
 };
 
 export default function AdjustmentPage() {
-  const provisionalRows = useMemo(() => autoShiftRows.filter((row) => row.allocationStatus === '仮割当'), []);
+  const provisionalRows = useMemo(() => autoShiftRows.filter((row) => row.allocationStatus === '調整中'), []);
 
   const [edits, setEdits] = useState<Record<string, ProvisionalEdit>>(
     Object.fromEntries(
@@ -41,19 +42,19 @@ export default function AdjustmentPage() {
   return (
     <div className="page-stack">
       <SectionCard
-        title="シフト調整（autoview 仮割当エディタ）"
+        title="シフト調整"
         action={
           <a href="https://shift-manager-beige-six.vercel.app/fixshift" className="primary-button">
             配信
           </a>
         }
       >
-        <p className="helper-text">編集テーブルで仮割当を更新し、右側プレビューで確定前の状態を即時確認できます。</p>
+        <p className="helper-text">編集テーブルを更新し、右側プレビューで確定前の状態を即時確認できます。</p>
 
         <div className="status-row">
-          <StatusTag tone="primary">仮割当対象 {provisionalRows.length}件</StatusTag>
+          <StatusTag tone="primary">調整対象 {provisionalRows.length}件</StatusTag>
           <StatusTag tone={changedCount > 0 ? 'warning' : 'insight'}>変更あり {changedCount}件</StatusTag>
-          <StatusTag tone="insight">データ元: autoview</StatusTag>
+          <StatusTag tone="insight">データ種別: 自動調整結果</StatusTag>
         </div>
 
         <div className="adjustment-layout">
@@ -128,7 +129,7 @@ export default function AdjustmentPage() {
                               }))
                             }
                           >
-                            <option value="仮割当">仮割当</option>
+                            <option value="調整中">調整中</option>
                             <option value="希望">希望</option>
                             <option value="要調整">要調整</option>
                           </select>
@@ -143,7 +144,7 @@ export default function AdjustmentPage() {
 
           <aside className="adjustment-layout__preview" aria-label="更新プレビュー">
             <h3>更新プレビュー</h3>
-            <p className="muted">仮割当の更新後ステータス</p>
+            <p className="muted">調整後ステータス</p>
             <div className="adjustment-preview-list">
               {provisionalRows.map((row) => {
                 const edit = edits[row.id];
@@ -165,7 +166,7 @@ export default function AdjustmentPage() {
             配信する
           </Link>
           <Link href="/autoview" className="chip">
-            自動調整ビューを確認
+            自動調整結果を確認
           </Link>
         </div>
 

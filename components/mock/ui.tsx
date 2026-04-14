@@ -44,6 +44,15 @@ export function AlertPanel({ title, children }: { title: string; children: React
   );
 }
 
+export function HeroPanel({ title, description }: { title: string; description: string }) {
+  return (
+    <section className="section-card">
+      <p className="kpi-card__label">{title}</p>
+      <p className="kpi-card__value">{description}</p>
+    </section>
+  );
+}
+
 export function ProcessFlow({ steps }: { steps: ProcessStep[] }) {
   return (
     <ol className="process-flow" aria-label="シフト作成プロセス">

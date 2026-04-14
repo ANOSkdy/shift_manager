@@ -7,8 +7,8 @@ import { targetWeek } from '@/lib/mock/shift-data';
 
 const flowLinks = [
   { href: '/upload', label: 'アップロード' },
-  { href: '/autoview', label: '自動調整ビュー' },
-  { href: '/adjustment', label: '調整' },
+  { href: '/autoview', label: '自動調整結果' },
+  { href: '/adjustment', label: 'シフト調整' },
   { href: '/dashboard', label: 'ダッシュボード' }
 ] as const;
 
