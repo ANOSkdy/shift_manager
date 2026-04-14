@@ -79,7 +79,7 @@ export default function UploadPage() {
       {stepState === 'done' ? (
         <AlertPanel title="解析が完了しました">
           <p>CSVをもとにシフト案を作成しました。内容確認へ進んでください。</p>
-          <div>
+          <div className="alert-panel__actions">
             <Link href="/autoview" className="primary-button">
               シフト確認
             </Link>
