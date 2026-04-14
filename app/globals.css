@@ -228,6 +228,16 @@ h2 {
   gap: 0.75rem;
 }
 
+.alert-panel__body {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.alert-panel__actions {
+  display: flex;
+  align-items: center;
+}
+
 .bullet-list {
   list-style: disc;
   padding-left: 1.1rem;
@@ -256,6 +266,11 @@ h2 {
   color: #fff;
 }
 
+.chip[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .table-wrap {
   overflow-x: auto;
 }
@@ -272,6 +287,10 @@ td {
   text-align: left;
   padding: 0.6rem;
   vertical-align: middle;
+}
+
+.autoview-row--adjusting {
+  background: rgba(206, 128, 128, 0.2);
 }
 
 .adjust-grid,
@@ -638,6 +657,43 @@ select {
 .adjustment-target__sub {
   font-size: 0.78rem;
   color: #5e7386;
+}
+
+.sending-panel {
+  margin-top: 0.9rem;
+  border: 1px solid rgba(74, 144, 226, 0.28);
+  border-radius: 0.8rem;
+  background: rgba(74, 144, 226, 0.06);
+  padding: 0.7rem 0.8rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.sending-panel__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(74, 144, 226, 0.25);
+  border-top-color: var(--primary);
+  border-radius: 999px;
+  animation: spin 0.9s linear infinite;
+}
+
+.sending-panel__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.sending-panel__text {
+  font-size: 0.8rem;
+  color: #496275;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1080px) {

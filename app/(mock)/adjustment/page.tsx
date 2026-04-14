@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { SectionCard, StatusTag } from '@/components/mock/ui';
 import { autoShiftRows, provisionalReplacementCandidates, provisionalSiteCandidates, type AllocationStatus } from '@/lib/mock/autoview-data';
@@ -18,7 +19,9 @@ const statusToneMap: Record<AllocationStatus, 'success' | 'primary' | 'warning'>
 };
 
 export default function AdjustmentPage() {
+  const router = useRouter();
   const provisionalRows = useMemo(() => autoShiftRows.filter((row) => row.allocationStatus === '調整中'), []);
+  const [isSending, setIsSending] = useState(false);
 
   const [edits, setEdits] = useState<Record<string, ProvisionalEdit>>(
     Object.fromEntries(
@@ -39,16 +42,17 @@ export default function AdjustmentPage() {
     return edit.employeeName !== row.employeeName || edit.assignedSite !== row.assignedSite || edit.allocationStatus !== row.allocationStatus;
   }).length;
 
+  const handleSend = () => {
+    if (isSending) return;
+    setIsSending(true);
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 3000);
+  };
+
   return (
     <div className="page-stack">
-      <SectionCard
-        title="シフト調整"
-        action={
-          <a href="https://shift-manager-beige-six.vercel.app/fixshift" className="primary-button">
-            配信
-          </a>
-        }
-      >
+      <SectionCard title="シフト調整">
         <p className="helper-text">編集テーブルを更新し、右側プレビューで確定前の状態を即時確認できます。</p>
 
         <div className="status-row">
@@ -161,11 +165,22 @@ export default function AdjustmentPage() {
             </div>
           </aside>
         </div>
+        {isSending ? (
+          <div className="sending-panel" role="status" aria-live="polite">
+            <div className="sending-panel__spinner" aria-hidden="true" />
+            <div>
+              <p className="sending-panel__title">配信中...</p>
+              <p className="sending-panel__text">調整済みシフトを各現場へ反映しています。完了後にダッシュボードへ移動します。</p>
+            </div>
+          </div>
+        ) : null}
         <div className="status-row" style={{ marginTop: '1rem' }}>
-          <Link href="/fixshift" className="primary-button">
-            配信する
-          </Link>
-          <Link href="/autoview" className="chip">
+          <button type="button" className="primary-button" onClick={handleSend} disabled={isSending}>
+            {isSending ? '配信中...' : '配信する'}
+          </button>
+          <Link href="/autoview" className="chip" aria-disabled={isSending} tabIndex={isSending ? -1 : undefined} onClick={(event) => {
+            if (isSending) event.preventDefault();
+          }}>
             自動調整結果を確認
           </Link>
         </div>

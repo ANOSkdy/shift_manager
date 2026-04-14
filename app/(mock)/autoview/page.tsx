@@ -22,7 +22,7 @@ export default function AutoViewPage() {
             </thead>
             <tbody>
               {autoShiftRows.map((row) => (
-                <tr key={row.id}>
+                <tr key={row.id} className={row.allocationStatus === '調整中' ? 'autoview-row--adjusting' : undefined}>
                   <td>
                     {row.workDate}（{row.weekday}）
                   </td>
