@@ -161,6 +161,15 @@ export default function AdjustmentPage() {
             </div>
           </aside>
         </div>
+        <div className="status-row" style={{ marginTop: '1rem' }}>
+          <Link href="/fixshift" className="primary-button">
+            配信する
+          </Link>
+          <Link href="/autoview" className="chip">
+            自動調整ビューを確認
+          </Link>
+        </div>
+
       </SectionCard>
     </div>
   );
