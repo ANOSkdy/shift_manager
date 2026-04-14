@@ -105,20 +105,3 @@ export function SiteBalanceChart({ data }: { data: SiteBalance[] }) {
     </article>
   );
 }
-
-export function HeroPanel({ title, description }: { title: string; description: string }) {
-  return (
-    <section className="hero-panel">
-      <div>
-        <p className="sidebar__eyebrow">提案モック PR2</p>
-        <h2>{title}</h2>
-        <p className="muted">{description}</p>
-      </div>
-      <div className="hero-illustration" aria-hidden="true">
-        <span className="bubble bubble--a" />
-        <span className="bubble bubble--b" />
-        <span className="bubble bubble--c" />
-      </div>
-    </section>
-  );
-}
