@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { SectionCard, StatusTag } from '@/components/mock/ui';
 import { autoShiftRows, provisionalReplacementCandidates, provisionalSiteCandidates, type AllocationStatus } from '@/lib/mock/autoview-data';
@@ -44,9 +43,9 @@ export default function AdjustmentPage() {
       <SectionCard
         title="シフト調整（autoview 仮割当エディタ）"
         action={
-          <Link href="/autoview" className="primary-button">
-            autoviewへ戻る
-          </Link>
+          <button type="button" className="primary-button">
+            配信
+          </button>
         }
       >
         <p className="helper-text">編集テーブルで仮割当を更新し、右側プレビューで確定前の状態を即時確認できます。</p>
