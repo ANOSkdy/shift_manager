@@ -289,6 +289,10 @@ td {
   vertical-align: middle;
 }
 
+.autoview-row--adjusting {
+  animation: adjusting-blink 0.55s ease-in-out 3;
+}
+
 .adjust-grid,
 .master-grid {
   display: grid;
@@ -689,6 +693,16 @@ select {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes adjusting-blink {
+  0%,
+  100% {
+    background: transparent;
+  }
+  50% {
+    background: rgba(206, 128, 128, 0.22);
   }
 }
 
