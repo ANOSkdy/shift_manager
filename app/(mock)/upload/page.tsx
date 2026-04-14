@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { AlertPanel, HeroPanel, SectionCard, StatusTag } from '@/components/mock/ui';
+import { AlertPanel, SectionCard, StatusTag } from '@/components/mock/ui';
 
 type StepState = 'idle' | 'analyzing' | 'done';
 
@@ -37,8 +37,6 @@ export default function UploadPage() {
 
   return (
     <div className="page-stack">
-      <HeroPanel title="CSVをアップロードして自動解析" description="スタッフ希望CSVを取り込み、7秒の解析演出後にシフト確認へ進める画面です。" />
-
       <SectionCard title="CSVアップロード">
         <div className="upload-flow">
           <label className="file-picker" htmlFor="csv-upload">

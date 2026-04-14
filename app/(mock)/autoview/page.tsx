@@ -1,29 +1,10 @@
 import Link from 'next/link';
-import { HeroPanel, SectionCard, StatusTag } from '@/components/mock/ui';
+import { SectionCard, StatusTag } from '@/components/mock/ui';
 import { autoShiftRows } from '@/lib/mock/autoview-data';
-
-const kpis = [
-  { label: '対象日', value: '2026/05/15-05/22' },
-  { label: '表示件数', value: `${autoShiftRows.length}件` },
-  { label: '要調整', value: `${autoShiftRows.filter((item) => item.allocationStatus === '要調整').length}件` }
-];
 
 export default function AutoViewPage() {
   return (
     <div className="page-stack">
-      <HeroPanel title="自動調整シフト（グリッドビュー）" description="アップロード済みCSVを取り込んだ想定で、日付×時間帯で確認しやすいグリッド形式に整形したシフト画面です。" />
-
-      <SectionCard title="読込サマリー" action={<StatusTag tone="success">CSV取込済み（想定）</StatusTag>}>
-        <ul className="summary-grid">
-          {kpis.map((item) => (
-            <li key={item.label} className="summary-item">
-              <p className="muted">{item.label}</p>
-              <p className="summary-item__value">{item.value}</p>
-            </li>
-          ))}
-        </ul>
-      </SectionCard>
-
       <SectionCard title="シフトグリッドビュー">
         <div className="table-wrap">
           <table>
