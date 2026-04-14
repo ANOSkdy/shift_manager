@@ -43,9 +43,9 @@ export default function AdjustmentPage() {
       <SectionCard
         title="シフト調整（autoview 仮割当エディタ）"
         action={
-          <button type="button" className="primary-button">
+          <a href="https://shift-manager-beige-six.vercel.app/fixshift" className="primary-button">
             配信
-          </button>
+          </a>
         }
       >
         <p className="helper-text">編集テーブルで仮割当を更新し、右側プレビューで確定前の状態を即時確認できます。</p>
