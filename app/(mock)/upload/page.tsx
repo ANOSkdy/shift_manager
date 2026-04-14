@@ -37,7 +37,7 @@ export default function UploadPage() {
 
   return (
     <div className="page-stack">
-      <HeroPanel title="CSVをアップロードして自動解析" description="スタッフ希望CSVを取り込み、7秒の解析演出後にシフト確認へ進める画面です。" />
+      <HeroPanel title="CSVをアップロードしてデータ処理" description="スタッフ希望CSVを取り込み、処理完了後にシフト確認へ進める画面です。" />
 
       <SectionCard title="CSVアップロード">
         <div className="upload-flow">

@@ -42,10 +42,10 @@ export default function AdjustmentPage() {
   return (
     <div className="page-stack">
       <SectionCard
-        title="シフト調整（autoview 仮割当エディタ）"
+        title="シフト調整"
         action={
           <Link href="/autoview" className="primary-button">
-            autoviewへ戻る
+            自動調整結果へ戻る
           </Link>
         }
       >
@@ -54,7 +54,7 @@ export default function AdjustmentPage() {
         <div className="status-row">
           <StatusTag tone="primary">仮割当対象 {provisionalRows.length}件</StatusTag>
           <StatusTag tone={changedCount > 0 ? 'warning' : 'insight'}>変更あり {changedCount}件</StatusTag>
-          <StatusTag tone="insight">データ元: autoview</StatusTag>
+          <StatusTag tone="insight">データ元: 自動調整結果</StatusTag>
         </div>
 
         <div className="adjustment-layout">

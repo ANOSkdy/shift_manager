@@ -73,7 +73,7 @@ export const targetWeek = '2026/04/13 - 2026/04/19';
 
 export const navItems: NavItem[] = [
   { href: '/upload', label: 'アップロード' },
-  { href: '/autoview', label: '自動調整ビュー' },
+  { href: '/autoview', label: '自動調整結果' },
   { href: '/adjustment', label: '調整' }
 ];
 

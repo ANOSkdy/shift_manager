@@ -110,7 +110,7 @@ export function HeroPanel({ title, description }: { title: string; description: 
   return (
     <section className="hero-panel">
       <div>
-        <p className="sidebar__eyebrow">提案モック PR2</p>
+        <p className="sidebar__eyebrow">シフト管理</p>
         <h2>{title}</h2>
         <p className="muted">{description}</p>
       </div>

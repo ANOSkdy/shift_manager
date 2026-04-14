@@ -11,9 +11,9 @@ const kpis = [
 export default function AutoViewPage() {
   return (
     <div className="page-stack">
-      <HeroPanel title="自動調整シフト（グリッドビュー）" description="アップロード済みCSVを取り込んだ想定で、日付×時間帯で確認しやすいグリッド形式に整形したシフト画面です。" />
+      <HeroPanel title="自動調整結果（グリッドビュー）" description="アップロード済みCSVを反映し、日付×時間帯で確認しやすいグリッド形式に整形したシフト画面です。" />
 
-      <SectionCard title="読込サマリー" action={<StatusTag tone="success">CSV取込済み（想定）</StatusTag>}>
+      <SectionCard title="読込サマリー" action={<StatusTag tone="success">CSV取込済み</StatusTag>}>
         <ul className="summary-grid">
           {kpis.map((item) => (
             <li key={item.label} className="summary-item">
@@ -74,7 +74,7 @@ export default function AutoViewPage() {
       <SectionCard title="次のアクション">
         <div className="status-row">
           <Link href="/adjustment" className="primary-button">
-            仮割当を調整する
+            シフト調整へ進む
           </Link>
           <Link href="/upload" className="chip">
             CSV再アップロード
