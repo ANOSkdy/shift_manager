@@ -101,6 +101,23 @@ h2 {
   display: grid;
 }
 
+.top-header__nav-group {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.top-header__nav-label {
+  font-size: 0.75rem;
+  color: #5e7386;
+  padding: 0 0.3rem;
+}
+
+.top-header__nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .top-header__menu {
   position: relative;
 }
