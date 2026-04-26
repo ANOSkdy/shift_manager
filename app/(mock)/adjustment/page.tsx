@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { SectionCard, StatusTag } from '@/components/mock/ui';
 import { autoShiftRows, provisionalReplacementCandidates, provisionalSiteCandidates, type AllocationStatus } from '@/lib/mock/autoview-data';
+import { candidateReasonRows, ruleCheckMockRows } from '@/lib/mock/tas-master-data';
 
 type ProvisionalEdit = {
   employeeName: string;
@@ -18,9 +19,25 @@ const statusToneMap: Record<AllocationStatus, 'success' | 'primary' | 'warning'>
   要調整: 'warning'
 };
 
+function toneForRuleResult(result: string) {
+  if (result === 'OK') return 'success' as const;
+  if (result === '警告') return 'warning' as const;
+  if (result === 'NG' || result === '要調整') return 'danger' as const;
+  return 'primary' as const;
+}
+
 export default function AdjustmentPage() {
   const router = useRouter();
   const provisionalRows = useMemo(() => autoShiftRows.filter((row) => row.allocationStatus === '調整中'), []);
+  const ruleSummary = useMemo(
+    () => ({
+      OK: ruleCheckMockRows.filter((row) => row.result === 'OK').length,
+      警告: ruleCheckMockRows.filter((row) => row.result === '警告').length,
+      NG: ruleCheckMockRows.filter((row) => row.result === 'NG').length,
+      管理者確認: ruleCheckMockRows.filter((row) => row.result === '管理者確認').length
+    }),
+    []
+  );
   const [isSending, setIsSending] = useState(false);
 
   const [edits, setEdits] = useState<Record<string, ProvisionalEdit>>(
@@ -86,8 +103,12 @@ export default function AdjustmentPage() {
                             {row.workDate}（{row.weekday}） {row.shiftType}
                           </p>
                           <p className="adjustment-target__sub">
-                            {row.startTime}-{row.endTime} / {row.taskType}
+                            {row.customerName} / {row.projectName}
                           </p>
+                          <p className="adjustment-target__sub">
+                            {row.startTime}-{row.endTime} / {row.taskType} / {row.roleName}
+                          </p>
+                          <p className="muted">{row.assignedSite}</p>
                         </td>
                         <td>
                           <select
@@ -155,10 +176,19 @@ export default function AdjustmentPage() {
                 return (
                   <article key={row.id} className="adjustment-preview-item">
                     <p className="adjustment-target__main">
-                      {row.workDate} {row.shiftType} / {row.taskType}
+                      {row.workDate} {row.shiftType} / {row.roleName}
                     </p>
                     <p className="adjustment-target__sub">{edit.employeeName} @ {edit.assignedSite}</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginBottom: '0.25rem' }}>
+                      {row.appliedRules.slice(0, 2).map((rule) => (
+                        <span key={`${row.id}-${rule}`} className="chip">
+                          {rule}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="muted">{row.adjustmentReason}</p>
                     <StatusTag tone={statusToneMap[edit.allocationStatus]}>{edit.allocationStatus}</StatusTag>
+                    <StatusTag tone={toneForRuleResult(row.ruleResult)}>{row.ruleResult}</StatusTag>
                   </article>
                 );
               })}
@@ -185,6 +215,73 @@ export default function AdjustmentPage() {
           </Link>
         </div>
 
+      </SectionCard>
+
+      <SectionCard title="ルールチェック結果">
+        <div className="status-row">
+          <StatusTag tone="success">OK {ruleSummary.OK}件</StatusTag>
+          <StatusTag tone="warning">警告 {ruleSummary.警告}件</StatusTag>
+          <StatusTag tone="danger">NG {ruleSummary.NG}件</StatusTag>
+          <StatusTag tone="primary">管理者確認 {ruleSummary.管理者確認}件</StatusTag>
+        </div>
+        <p className="helper-text">現時点ではモック表示です。実装時は担当者・現場変更に応じて判定を再計算します。</p>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>判定</th>
+                <th>チェック内容</th>
+                <th>関連ルール</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ruleCheckMockRows.map((row) => (
+                <tr key={row.id}>
+                  <td>
+                    <StatusTag tone={toneForRuleResult(row.result)}>{row.result}</StatusTag>
+                  </td>
+                  <td>{row.message}</td>
+                  <td>{row.relatedRule}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </SectionCard>
+
+      <SectionCard title="候補者ごとの選定理由">
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>候補者</th>
+                <th>判定</th>
+                <th>理由</th>
+                <th>タグ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {candidateReasonRows.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.staffName}</td>
+                  <td>
+                    <StatusTag tone={toneForRuleResult(row.result)}>{row.result}</StatusTag>
+                  </td>
+                  <td>{row.reason}</td>
+                  <td>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
+                      {row.tags.map((tag) => (
+                        <span key={`${row.id}-${tag}`} className="chip">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </SectionCard>
     </div>
   );
